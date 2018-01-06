@@ -20,7 +20,7 @@ class Konami extends Component {
 
   render() {
     return (
-      <div>Hello this is Konami!</div>
+      <div>Hello, {this.props.name}, this is Konami!</div>
     );
   }
 }

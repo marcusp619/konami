@@ -4,6 +4,28 @@ import './App.css';
 import Konami from './components/Konami';
 
 class App extends Component {
+  constructor() {
+    super(); //always need
+    this.state = { //sets the initial state
+      activated: false,
+      name: "User"
+    };
+    // this.toggleActivation = this.toggleActivation.bind(this);
+  }
+
+  toggleActivation = () => {
+    if (this.state.activated === true) {
+      this.setState({activated: false}); //sets the state
+    } else {
+      this.setState({activated: true});
+    }
+  }
+
+  getName = () => {
+    let name = document.getElementById("inputVal").value 
+    this.setState({name});
+  }
+
   render() {
     return (
       <div className="App">
@@ -11,10 +33,13 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <Konami />
+         {/* the onClick fn is how you call toggleActivation use */}
+        <button onClick={this.toggleActivation}>Toggle Koname Code!</button>
+        {this.state.activated ? <Konami name={this.state.name} /> : <div>Konami Code: Deactivated</div>}
+        <div>
+          <input type="text" id="inputVal" placeholder="Type your name..."/>
+          <button onClick={this.getName}>submit</button>
+        </div>
       </div>
     );
   }
